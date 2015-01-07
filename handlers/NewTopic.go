@@ -18,7 +18,7 @@ func (self *NewTopicHandler) Get() {
 }
 
 func (self *NewTopicHandler) Post() {
-	nid, _ := self.GetInt("nodeid")
+	nid, _ := self.GetInt64("nodeid")
 	cid := models.GetNode(nid).Pid
 	uid, _ := self.GetSession("userid").(int64)
 	author,_ := self.GetSession("username").(string)

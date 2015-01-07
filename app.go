@@ -16,14 +16,12 @@ func main() {
 	beego.SetStaticPath("/static", "static/")
 	beego.SetStaticPath("/archives", "archives/")
 
-
 	beego.Router("/", &handlers.MainHandler{})
 	beego.Router("/category/:cid:int", &handlers.MainHandler{})
 	beego.Router("/search", &handlers.SearchHandler{})
 
 	beego.Router("/node/:nid:int", &handlers.NodeHandler{})
 	beego.Router("/view/:tid:int", &handlers.ViewHandler{})
-
 
 	beego.Router("/register", &handlers.RegHandler{})
 	beego.Router("/login", &handlers.LoginHandler{})

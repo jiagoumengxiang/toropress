@@ -4,11 +4,12 @@ import (
 	"errors"
 	"fmt"
 	"github.com/lunny/xorm"
-	_ "github.com/mattn/go-sqlite3"
+//	_ "github.com/mattn/go-sqlite3"
 	"toropress/helper"
 	//_ "github.com/lib/pq"
 	"os"
 	"time"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var (
@@ -18,12 +19,12 @@ var (
 const (
 	DbName         = "./data/sqlite.db"
 	DbUser         = "root"
-	mysqlDriver    = "mymysql"
+	mysqlDriver    = "mysql"
 	mysqlDrvformat = "%v/%v/"
 	pgDriver       = "postgres"
 	pgDrvFormat    = "user=%v dbname=%v sslmode=disable"
 	sqlite3Driver  = "sqlite3"
-	dbtype         = "sqlite"
+	dbtype         = "mysql"
 )
 
 type User struct {
@@ -192,7 +193,8 @@ func XConDb() (*xorm.Engine, error) {
 		return xorm.NewEngine("sqlite3", DbName)
 
 	case dbtype == "mysql":
-		return xorm.NewEngine("mysql", "user=mysql password=jn!@#9^&* dbname=mysql")
+		fmt.Println("mysql")
+		return xorm.NewEngine("mysql", "admin:admin@/toropress?charset=utf8")
 
 	case dbtype == "pgsql":
 		return xorm.NewEngine("postgres", "user=postgres password=jn!@#$%^&* dbname=pgsql sslmode=disable")
